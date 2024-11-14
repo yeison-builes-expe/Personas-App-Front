@@ -30,6 +30,18 @@ export class PersonasComponent {
     this.toUpdate = record
   }
 
+  refreshTable() {
+    this.apiService.getPeople().subscribe(
+      (data) => {
+        this.peopleData = data.data;
+      },
+      (error) => {
+        console.log(error);
+        alert("Error no autorizado");
+      }
+    );
+  }
+
   ngOnInit():void{
     this.apiService.getPeople().subscribe(
       (data)=>{
@@ -37,7 +49,8 @@ export class PersonasComponent {
         
       },
     (error)=>{
-      console.error("error")
+      console.log(error)
+      alert("Error no autorizado")
     });
   }
 }

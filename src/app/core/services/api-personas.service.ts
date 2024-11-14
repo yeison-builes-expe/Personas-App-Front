@@ -15,38 +15,27 @@ export class ApiPersonasService {
   constructor(private http : HttpClient) { }
 
   getPeople():Observable<ApiPersonasResponse<Persona[]>>{
-    const auth_token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjE2MDFlZWY5LTBkNzctNDYzZi05OWFlLWExMTNlYjUzYTAxMSIsImV4cCI6MTczMTYxOTU4NiwiaXNzIjoiUGFjdGlhIiwiYXVkIjoiQXBwVXNlcnMifQ.3NM5Kr7pH9KV4f-wN5I8_QZ8nHPIHZKqOMzUDy5XNVo"
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    })
-    return this.http.get<ApiPersonasResponse<Persona[]>>(`${this.apiUrl}personas`,{headers:headers})
+    return this.http.get<ApiPersonasResponse<Persona[]>>(`${this.apiUrl}personas`)
   }
 
   createPerson(record:Persona):Observable<ApiPersonasResponse<Persona>>{
-    const auth_token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjE2MDFlZWY5LTBkNzctNDYzZi05OWFlLWExMTNlYjUzYTAxMSIsImV4cCI6MTczMTYxOTU4NiwiaXNzIjoiUGFjdGlhIiwiYXVkIjoiQXBwVXNlcnMifQ.3NM5Kr7pH9KV4f-wN5I8_QZ8nHPIHZKqOMzUDy5XNVo"
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    })
-    return this.http.post<ApiPersonasResponse<Persona>>(`${this.apiUrl}personas`,record,{headers:headers})
+    console.log(record)
+    return this.http.post<ApiPersonasResponse<Persona>>(`${this.apiUrl}personas`,record)
   }
 
   deletePerson(id:number):Observable<ApiPersonasResponse<boolean>>{
-    const auth_token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjE2MDFlZWY5LTBkNzctNDYzZi05OWFlLWExMTNlYjUzYTAxMSIsImV4cCI6MTczMTYxOTU4NiwiaXNzIjoiUGFjdGlhIiwiYXVkIjoiQXBwVXNlcnMifQ.3NM5Kr7pH9KV4f-wN5I8_QZ8nHPIHZKqOMzUDy5XNVo"
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    })
-    return this.http.delete<ApiPersonasResponse<boolean>>(`${this.apiUrl}personas/${id}`,{headers:headers})
+    return this.http.delete<ApiPersonasResponse<boolean>>(`${this.apiUrl}personas/${id}`)
   }
 
   updatePerson(record:Persona):Observable<ApiPersonasResponse<Persona>>{
-    const auth_token:string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjE2MDFlZWY5LTBkNzctNDYzZi05OWFlLWExMTNlYjUzYTAxMSIsImV4cCI6MTczMTYxOTU4NiwiaXNzIjoiUGFjdGlhIiwiYXVkIjoiQXBwVXNlcnMifQ.3NM5Kr7pH9KV4f-wN5I8_QZ8nHPIHZKqOMzUDy5XNVo"
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
-    })
-    return this.http.put<ApiPersonasResponse<Persona>>(`${this.apiUrl}personas`,record,{headers:headers})
+    return this.http.put<ApiPersonasResponse<Persona>>(`${this.apiUrl}personas`,record)
+  }
+
+  login():Observable<ApiPersonasResponse<string>>{
+    const loginCred :any={
+      User:"admin",
+      Password:"admin"
+    }
+    return this.http.post<ApiPersonasResponse<string>>(`${this.apiUrl}login`,loginCred)
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {FormControl, ReactiveFormsModule, FormGroup} from '@angular/forms';
 import { ApiPersonasService } from '../../core/services/api-personas.service';
 import { Persona } from '../../core/models/persona.interface';
@@ -19,15 +19,16 @@ export class PersonaCreateEditComponent {
   });
 
   @Input() personData?: Persona;
+  @Output() recordUpdated = new EventEmitter<void>();
 
   constructor(private apiService:ApiPersonasService){}
 
   onSubmit(){
     const model : Persona = {
       nombre:this.personaForm.value["firstName"]!,
-      apellido:this.personaForm.value["lastName"]!,
-      cedula:this.personaForm.value["nit"]!,
-      celular:this.personaForm.value["phoneNumber"]!,
+      apellido:this.personaForm.value["lastName"]!.toString(),
+      cedula:this.personaForm.value["nit"]!.toString(),
+      celular:this.personaForm.value["phoneNumber"]!.toString(),
     }
     if(this.personData){
       model.id = this.personData.id
@@ -45,10 +46,11 @@ export class PersonaCreateEditComponent {
           console.log("creado")
         },
         (error)=>{
-          console.error("error creacion")
+          console.error("error creacion", error)
         }
       )
     }
+    this.recordUpdated.emit();
   }
 
   ngOnChanges():void{
