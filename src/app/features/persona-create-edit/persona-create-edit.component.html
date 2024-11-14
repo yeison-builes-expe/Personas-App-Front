@@ -1,0 +1,26 @@
+<div class="form-container">
+    <form [formGroup]="personaForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label class="form-label" for="firstName">Nombre:</label>
+          <input class="form-control" placeholder="firstName" aria-label="firstName" id="firstName" formControlName="firstName" [value]="personData?.nombre" />
+        </div>
+      
+        <div>
+          <label class="form-label" for="apellido">Apellido:</label>
+          <input class="form-control" placeholder="lastName" aria-label="lastName" id="lastName" id="apellido" formControlName="lastName" [value]="personData?.apellido" />
+        </div>
+      
+        <div>
+          <label class="form-label" for="cedula">Cédula:</label>
+          <input type="number"  class="form-control" placeholder="nit" aria-label="nit" id="nit" formControlName="nit"  [value]="personData?.cedula"/>
+        </div>
+      
+        <div>
+          <label class="form-label" for="celular">Celular:</label>
+          <input type="number" class="form-control" placeholder="phoneNumber" aria-label="phoneNumber" id="phoneNumber" formControlName="phoneNumber" [value]="personData?.celular"/>
+        </div>
+      
+        <button type="submit"  class="btn btn-success" [disabled]="!personaForm.valid">Registrar</button>
+      </form>
+</div>
+  

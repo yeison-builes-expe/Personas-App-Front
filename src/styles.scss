@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+/* _reset.scss */
+
+/* Elimina los márgenes y paddings de todos los elementos */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Asegura que el padding y border no afecten el tamaño total del elemento */
+}
+
+/* Elimina el subrayado de los enlaces */
+a {
+  text-decoration: none;
+}
+
+/* Normaliza la apariencia de las imágenes */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Quita las listas con viñetas */
+ul, ol {
+  list-style: none;
+}
+
+/* Elimina el borde de los botones */
+button {
+  border: none;
+  background: none;
+}
+
+/* Evita la aparición de bordes en los elementos interactivos (como inputs) */
+input, textarea, button {
+  outline: none;
+}

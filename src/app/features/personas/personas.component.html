@@ -1,0 +1,36 @@
+<div class="personas-content">
+    <button type="button" class="btn btn-success">Crear nuevo registro</button>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Cédula</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            @for(record of peopleData; track record.id){
+                <tr>
+                    <th scope="row">{{record.id}}</th>
+                    <td>{{record.nombre}}</td>
+                    <td>{{record.apellido}}</td>
+                    <td>{{record.cedula}}</td>
+                    <td>{{record.celular}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                        <button type="button" class="btn btn-outline-primary" (click)="deleteRecord(record.id!)">Eliminar</button>
+                        <button type="button" class="btn btn-outline-primary" (click)="updateRecord(record)">Actualizar</button>
+                      </div>
+                    </td>
+                  </tr> 
+                  
+            }   
+        </tbody>
+      </table>
+
+      <app-persona-create-edit [personData]="toUpdate"></app-persona-create-edit>
+</div>
